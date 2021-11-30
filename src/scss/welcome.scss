@@ -65,14 +65,14 @@
 
   .scrolldown-p1,
   .scrolldown-p2 {
-    animation-duration: 1.5s;
+    animation-duration: 3s;
     animation-name: scrolldown;
     animation-iteration-count: infinite;
     fill: $primary-color;
   }
 
   .scrolldown-p2 {
-    animation-delay: 0.75s;
+    animation-delay: 1.5s;
   }
 
   @keyframes scrolldown {
