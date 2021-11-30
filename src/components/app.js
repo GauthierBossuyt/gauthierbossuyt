@@ -20,12 +20,17 @@ export default function App() {
   };
 
   let test = (event) => {
-    window.scrollBy({ left: event.deltaY, behavior: "smooth" });
+    if (event.deltaY !== 0) {
+      window.scrollBy({ left: event.deltaY * 1.5, behavior: "smooth" });
+    }
+    if (event.deltaX !== 0) {
+      window.scrollBy({ left: event.deltaX * 1.5, behavior: "smooth" });
+    }
   };
 
   return (
     <div className="surface" ref={surface} onWheelCapture={test}>
-      <div className="test">
+      <div className="content">
         <Navigation />
         <Welcome />
       </div>

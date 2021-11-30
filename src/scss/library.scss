@@ -17,9 +17,10 @@
     text-align: center;
 
     h1 {
-      writing-mode: sideways-lr;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
       position: absolute;
-      margin: 0;
+      margin: 1vw 0;
 
       z-index: 5;
     }
