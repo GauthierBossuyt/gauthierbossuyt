@@ -12,16 +12,26 @@ body {
   background-color: $background-color;
   overflow-y: hidden;
   scrollbar-width: none;
+  //width: calc((100vw + 471px) * 3);
+  width: 500vw;
 }
 
 body::-webkit-scrollbar {
   display: none;
 }
 
-#root,
+#root {
+  height: 100vh;
+}
+
+#A,
+#B {
+  float: left;
+}
+
 .surface {
   height: 100vh;
-  width: calc(100vw + 314px);
+  width: calc(100vw + 471px);
 }
 
 h1 {

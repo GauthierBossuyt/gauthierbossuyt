@@ -25,7 +25,12 @@ export default function Library(props) {
     }
 
     setStatus(newList);
-    props.onResize(json.projects.length, newList.includes(true), library);
+    props.onResize(
+      json.projects.length,
+      newList.includes(true),
+      library,
+      props.surface
+    );
   };
 
   return (
