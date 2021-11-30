@@ -11,12 +11,15 @@ body {
   margin: 0;
   background-color: $background-color;
   overflow-y: hidden;
-  scrollbar-width: none;
-  //width: calc((100vw + 471px) * 3);
-  width: 500vw;
+  width: 100%;
+  //width: calc(100vw + 471px);
 }
 
 body::-webkit-scrollbar {
+  display: none;
+}
+
+body::-webkit-scrollbar-thumb:horizontal {
   display: none;
 }
 
@@ -26,12 +29,20 @@ body::-webkit-scrollbar {
 
 #A,
 #B {
-  float: left;
+  position: absolute;
+  height: 100vh;
 }
 
+#A {
+  left: 0;
+}
+
+#B {
+  left: calc((100vw + 785px));
+}
 .surface {
   height: 100vh;
-  width: calc(100vw + 471px);
+  width: calc(100vw + 785px);
 }
 
 h1 {

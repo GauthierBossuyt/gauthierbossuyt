@@ -8,6 +8,7 @@
   float: left;
 
   .loading {
+    position: relative;
     h1 {
       font-size: clamp(40px, 3.5vw, 4vw);
       margin-bottom: 35px;
@@ -50,8 +51,9 @@
     left: 50%;
     position: absolute;
     text-align: center;
-    bottom: 20%;
+    bottom: -70%;
     transform: translate(-50%, -50%);
+    z-index: 50;
   }
 
   .scrolldown {

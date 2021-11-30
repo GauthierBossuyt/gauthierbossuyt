@@ -39,6 +39,36 @@
       ],
       "image": "https://images.unsplash.com/photo-1624628639856-100bf817fd35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80",
       "url": "www.google.com"
+    },
+    {
+      "id": 4,
+      "name": "Another Other Project",
+      "description": "Work Sans is a typeface family based loosely on early Grotesques, such as those by Stephenson Blake, Miller & Richard and Bauerschen Giesserei. The Regular weight and others in the middle of the family are optimised for on-screen text usage at medium-sizes (14px-48px) and can also be used in print design. The fonts closer to the extreme weights are designed more for display use both on the web and in print. Overall, features are simplified and optimised for screen resolutions; for example, diacritic marks are larger than how they would be in print. A version optimised for desktop applications is available from the Work Sans github project page.",
+      "year": 2021,
+      "client": "Erasmus University College Brussels",
+      "collaborators": [
+        "Amelie Detrez",
+        "Mitch Vanhove",
+        "Axel Viaene",
+        "Tom Wouters"
+      ],
+      "image": "https://images.unsplash.com/photo-1624628639856-100bf817fd35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80",
+      "url": "www.google.com"
+    },
+    {
+      "id": 5,
+      "name": "Another Other Project",
+      "description": "Work Sans is a typeface family based loosely on early Grotesques, such as those by Stephenson Blake, Miller & Richard and Bauerschen Giesserei. The Regular weight and others in the middle of the family are optimised for on-screen text usage at medium-sizes (14px-48px) and can also be used in print design. The fonts closer to the extreme weights are designed more for display use both on the web and in print. Overall, features are simplified and optimised for screen resolutions; for example, diacritic marks are larger than how they would be in print. A version optimised for desktop applications is available from the Work Sans github project page.",
+      "year": 2021,
+      "client": "Erasmus University College Brussels",
+      "collaborators": [
+        "Amelie Detrez",
+        "Mitch Vanhove",
+        "Axel Viaene",
+        "Tom Wouters"
+      ],
+      "image": "https://images.unsplash.com/photo-1624628639856-100bf817fd35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80",
+      "url": "www.google.com"
     }
   ]
 }

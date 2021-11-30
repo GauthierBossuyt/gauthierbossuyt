@@ -1,5 +1,6 @@
 export default function Project(props) {
   let project = props.data;
+
   let convertDataToString = (data) => {
     let string = "";
     data.forEach((element, index) => {
