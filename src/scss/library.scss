@@ -7,7 +7,6 @@
   display: flex;
 
   .project_sm {
-    width: 157px;
     height: 100vh;
     position: relative;
     display: flex;
@@ -15,12 +14,14 @@
     border-right: 2px solid $primary-color;
     overflow: hidden;
     text-align: center;
+    flex-shrink: 0;
+    width: 157px;
 
     h1 {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       position: absolute;
-      margin: 1vw 0;
+      margin: 58px 0;
 
       z-index: 5;
     }
@@ -83,10 +84,11 @@
     }
 
     h1 {
-      writing-mode: sideways-lr;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
       position: absolute;
       color: white;
-      margin: 0;
+      margin: 58px 0;
       left: 50px;
       z-index: 5;
     }

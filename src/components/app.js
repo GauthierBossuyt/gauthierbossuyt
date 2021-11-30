@@ -16,7 +16,11 @@ export default function App() {
     }
     surface.current.style.width = `calc(100vw + ${widthContainer}px)`;
     library.current.style.width = `${widthContainer}px`;
-    window.scrollBy({ left: widthContainer, behavior: "smooth" });
+    if (isOneOpen) {
+      window.scrollBy({ left: widthContainer, behavior: "smooth" });
+    } else {
+      window.scrollBy({ left: -widthContainer, behavior: "smooth" });
+    }
   };
 
   let test = (event) => {
@@ -29,12 +33,21 @@ export default function App() {
   };
 
   return (
-    <div className="surface" ref={surface} onWheelCapture={test}>
-      <div className="content">
-        <Navigation />
-        <Welcome />
+    <div>
+      <div id="A" className="surface" ref={surface} onWheelCapture={test}>
+        <div className="content">
+          <Navigation />
+          <Welcome />
+        </div>
+        <Library onResize={changeWidth} />
       </div>
-      <Library onResize={changeWidth} />
+      <div id="B" className="surface" ref={surface} onWheelCapture={test}>
+        <div className="content">
+          <Navigation />
+          <Welcome />
+        </div>
+        <Library onResize={changeWidth} />
+      </div>
     </div>
   );
 }
