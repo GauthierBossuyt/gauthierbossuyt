@@ -1,0 +1,156 @@
+.library {
+  background-color: $background-color;
+  width: 314px;
+  height: 100vh;
+  float: left;
+  margin-top: 0px;
+  display: flex;
+
+  .project_sm {
+    width: 157px;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-right: 2px solid $primary-color;
+    overflow: hidden;
+    text-align: center;
+
+    h1 {
+      writing-mode: sideways-lr;
+      position: absolute;
+      margin: 0;
+
+      z-index: 5;
+    }
+
+    #name {
+      bottom: 0;
+      padding-bottom: 58px;
+    }
+
+    #year {
+      top: 0;
+      padding-top: 58px;
+    }
+
+    img {
+      filter: opacity(0%);
+      -webkit-filter: opacity(0%);
+      -moz-filter: opacity(0%);
+      height: 100vh;
+      position: absolute;
+      z-index: 0;
+    }
+
+    .project_bg {
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  }
+
+  .project_sm:hover h1 {
+    color: white;
+  }
+
+  .project_sm:hover {
+    cursor: pointer;
+  }
+
+  .project_sm:hover img {
+    filter: brightness(20%);
+    -webkit-filter: brightness(20%);
+    -moz-filter: brightness(20%);
+  }
+
+  .project_bg {
+    width: 760px;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-right: 2px solid $primary-color;
+    overflow: hidden;
+    text-align: center;
+
+    img {
+      height: 100vh;
+      filter: brightness(20%);
+      -webkit-filter: brightness(20%);
+      -moz-filter: brightness(20%);
+    }
+
+    h1 {
+      writing-mode: sideways-lr;
+      position: absolute;
+      color: white;
+      margin: 0;
+      left: 50px;
+      z-index: 5;
+    }
+
+    #name {
+      bottom: 0;
+      padding-bottom: 58px;
+    }
+
+    #year {
+      top: 0;
+      padding-top: 58px;
+    }
+
+    .info {
+      position: absolute;
+      right: 0;
+      z-index: 5;
+      text-align: left;
+      padding-top: 58px;
+      margin-right: 70px;
+      margin-left: 157px;
+
+      h2 {
+        margin-top: 0;
+        margin-bottom: 35px;
+      }
+
+      p {
+        line-height: 25px;
+        text-align: justify;
+        color: white;
+        font-size: 18px;
+      }
+
+      button {
+        font-family: $text-font;
+        height: 40px;
+        width: 190px;
+        font-size: 18px;
+        margin-top: 45px;
+        font-weight: 700;
+        color: #262626;
+        box-shadow: 0px 3px 6px #0000003d;
+        border: none;
+        background-color: #ffffff;
+        border-radius: 6px;
+        position: relative;
+        z-index: 0;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .project_bg:hover {
+    cursor: pointer;
+  }
+}
+
+.shown {
+  display: block;
+}
+.hidden {
+  display: none !important;
+}

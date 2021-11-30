@@ -1,0 +1,46 @@
+@import "./scss/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,700&family=Work+Sans:wght@700&display=swap");
+
+@import "./scss/animations/animations.scss";
+
+@import "./scss/welcome.scss";
+@import "./scss/nav.scss";
+@import "./scss/library.scss";
+
+body {
+  margin: 0;
+  background-color: $background-color;
+  overflow-y: hidden;
+}
+
+#root,
+.surface {
+  height: 100vh;
+  width: calc(100vw + 314px);
+}
+
+h1 {
+  font-family: $title-font;
+  font-weight: $title-weight;
+  color: $primary-color;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: white;
+  font-family: $title-font;
+  font-weight: $title-weight;
+  text-transform: uppercase;
+  font-size: 25px;
+}
+
+p {
+  font-family: $text-font;
+  color: $primary-color;
+}
+
+.test {
+  width: 100vw;
+  height: 100vh;
+  float: left;
+}
