@@ -19,8 +19,12 @@ export default function App() {
     window.scrollBy({ left: widthContainer, behavior: "smooth" });
   };
 
+  let test = (event) => {
+    window.scrollBy({ left: event.deltaY, behavior: "smooth" });
+  };
+
   return (
-    <div className="surface" ref={surface}>
+    <div className="surface" ref={surface} onWheelCapture={test}>
       <div className="test">
         <Navigation />
         <Welcome />
