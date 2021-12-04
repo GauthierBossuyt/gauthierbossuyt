@@ -1,12 +1,7 @@
-import { useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Welcome from "./welcome";
 import Navigation from "./navigation";
 import Library from "./library";
-import { act } from "react-dom/test-utils";
-
-document.body.onmousedown = (e) => {
-  if (e.button === 1) return false;
-};
 
 let smallWidth = 157;
 let bigWidth = 760;
@@ -14,48 +9,114 @@ let bigWidth = 760;
 export default function App() {
   const A = useRef(null);
   const B = useRef(null);
-  let active = A;
-  let start = 0;
+  let pos = {
+    A: { start: 0, end: 0 },
+    B: { start: 0, end: 0 },
+  };
+  let windowPos = {
+    x: window.scrollX,
+    y: window.scrollX + window.innerWidth,
+    z: window.scrollX + window.innerWidth / 2,
+  };
+  let current = A;
+  let target = B;
+  let change = true;
   let direction = "left";
-  let buffer = 150;
+
+  document.body.onmousedown = (e) => {
+    if (e.button === 1) return false;
+  };
 
   document.body.onscroll = (e) => {
-    let position = { x: window.scrollX, y: window.scrollX + window.innerWidth };
-    let treshold = {
-      left: start + buffer,
-      right: active.current.clientWidth - buffer,
-    };
-    let prevActive = active;
-    //goes right
-    if (
-      treshold.left < position.x &&
-      treshold.right < position.y &&
-      direction !== "right"
-    ) {
-      direction = "right";
-      swapActive();
-      active.current.style.left = `${start + prevActive.current.clientWidth}px`;
+    changePosWindow();
+    setTargetAndCurrent();
+    setDirection();
+    moveContainer();
+  };
 
-      //goes left
-    } else if (
-      treshold.left > position.x &&
-      treshold.right > position.y &&
-      direction !== "left"
-    ) {
-      direction = "left";
-      swapActive();
-      console.log(direction, active, prevActive);
-      prevActive.current.style.left = `${start - active.current.clientWidth}px`;
+  useEffect(() => {
+    pos = {
+      A: { start: 0, end: A.current.clientWidth },
+      B: { start: 0 - B.current.width * -1, end: 0 },
+    };
+  });
+
+  let changePosWindow = () => {
+    windowPos = {
+      x: window.scrollX,
+      y: window.scrollX + window.innerWidth,
+      z: window.scrollX + window.innerWidth / 2,
+    };
+  };
+
+  let setTargetAndCurrent = () => {
+    if (pos.A.start < windowPos.x && pos.A.end > windowPos.y) {
+      current = A;
+      target = B;
+      change = true;
+    } else if (pos.B.start < windowPos.x && pos.B.end > windowPos.y) {
+      current = B;
+      target = A;
+      change = true;
+    } else {
+      change = false;
     }
   };
 
-  let swapActive = () => {
-    if (active === A) {
-      active = B;
-    } else if (active === B) {
-      active = A;
+  let setDirection = () => {
+    let middle;
+    if (current === B) {
+      middle = pos.B.start + B.current.clientWidth / 2;
+    } else if (current === A) {
+      middle = pos.A.start + A.current.clientWidth / 2;
     }
-    return active;
+
+    if (middle > windowPos.z) {
+      direction = "left";
+    } else if (middle < windowPos.z) {
+      direction = "right";
+    }
+  };
+
+  let moveContainer = () => {
+    if (target === B && change) {
+      if (direction === "left") {
+        B.current.style.left = `${pos.A.start - B.current.clientWidth}px`;
+        pos = {
+          ...pos,
+          B: {
+            start: pos.A.start - B.current.clientWidth,
+            end: pos.A.start,
+          },
+        };
+      } else if (direction === "right") {
+        B.current.style.left = `${pos.A.end}px`;
+        pos = {
+          ...pos,
+          B: {
+            start: pos.A.end,
+            end: pos.A.end + B.current.clientWidth,
+          },
+        };
+      }
+    } else if (target === A && change) {
+      if (direction === "left") {
+        A.current.style.left = `${pos.B.start - A.current.clientWidth}px`;
+        pos = {
+          ...pos,
+          A: { start: pos.B.start - A.current.clientWidth, end: pos.B.start },
+        };
+      } else if (direction === "right") {
+        A.current.style.left = `${pos.B.end}px`;
+        pos = {
+          ...pos,
+          A: {
+            start: pos.B.end,
+            end: pos.B.end + B.current.clientWidth,
+          },
+        };
+      }
+    }
   };
 
   let changeWidth = (Q, isOneOpen, library, surface) => {
@@ -67,9 +128,9 @@ export default function App() {
     surface.current.style.width = `calc(100vw + ${widthContainer}px)`;
     library.current.style.width = `${widthContainer}px`;
     if (isOneOpen) {
-      window.scrollBy({ left: widthContainer, behavior: "smooth" });
+      window.scrollBy({ left: bigWidth, behavior: "smooth" });
     } else {
-      window.scrollBy({ left: -widthContainer, behavior: "smooth" });
+      window.scrollBy({ left: -bigWidth, behavior: "smooth" });
     }
   };
 

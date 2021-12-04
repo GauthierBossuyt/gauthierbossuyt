@@ -10,8 +10,6 @@ export default function Library(props) {
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos/1")
       .then((resp) => resp.json())
-      .then((data) => console.log(data))
-      .then(() => {})
       .then(setData(json.projects))
       .then(() => {
         setStatus(new Array(json.projects.length).fill(false));

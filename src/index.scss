@@ -38,7 +38,7 @@ body::-webkit-scrollbar-thumb:horizontal {
 }
 
 #B {
-  left: calc((100vw + 785px));
+  left: calc((100vw + 785px) * -1);
 }
 .surface {
   height: 100vh;
