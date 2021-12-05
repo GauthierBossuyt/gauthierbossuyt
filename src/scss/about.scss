@@ -1,0 +1,40 @@
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  border-right: 2px solid $primary-color;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  width: 157px;
+
+  h1 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    position: absolute;
+    margin: 58px 0;
+    z-index: 5;
+    font-size: 50px;
+  }
+
+  #name {
+    bottom: 0;
+    padding-bottom: 58px;
+  }
+
+  .icons {
+    position: absolute;
+    top: 5vh;
+    display: flex;
+    flex-direction: column;
+    img {
+      width: 80px;
+      margin-bottom: 40px;
+    }
+
+    img:hover {
+      cursor: pointer;
+    }
+  }
+}

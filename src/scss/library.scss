@@ -22,8 +22,8 @@
       transform: rotate(180deg);
       position: absolute;
       margin: 58px 0;
-
       z-index: 5;
+      font-size: 50px;
     }
 
     #name {
@@ -34,6 +34,7 @@
     #year {
       top: 0;
       padding-top: 58px;
+      font-size: 25px;
     }
 
     img {
@@ -91,6 +92,7 @@
       margin: 58px 0;
       left: 50px;
       z-index: 5;
+      font-size: 50px;
     }
 
     #name {
@@ -101,6 +103,7 @@
     #year {
       top: 0;
       padding-top: 58px;
+      font-size: 25px;
     }
 
     .info {
@@ -115,6 +118,7 @@
       h2 {
         margin-top: 0;
         margin-bottom: 35px;
+        font-size: 25px;
       }
 
       p {
