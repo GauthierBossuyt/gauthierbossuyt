@@ -34,7 +34,7 @@ export default function Project(props) {
         <button
           className={project.url.length > 0 ? "shown" : "hidden"}
           onClick={() => {
-            window.location.href = "https://google.com";
+            window.open("https://google.com", "target_");
           }}
         >
           Go to site

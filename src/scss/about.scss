@@ -8,6 +8,9 @@
   flex-wrap: nowrap;
   flex-shrink: 0;
   width: 157px;
+  top: 0;
+  background-color: #dddddd;
+  z-index: 5;
 
   h1 {
     writing-mode: vertical-rl;
@@ -15,7 +18,7 @@
     position: absolute;
     margin: 58px 0;
     z-index: 5;
-    font-size: 50px;
+    font-size: 4vh;
   }
 
   #name {
@@ -35,6 +38,98 @@
 
     img:hover {
       cursor: pointer;
+    }
+  }
+}
+
+.banner {
+  display: grid;
+  overflow: hidden;
+  margin: 8vh 0px 0px 116px;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 41px;
+
+  img {
+    grid-column: 5/13;
+    width: 100%;
+    margin-top: -100px;
+    filter: grayscale(1);
+  }
+}
+
+.about_content {
+  display: grid;
+  margin: 117px 116px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  column-gap: 41px;
+
+  img {
+    grid-column: 2/7;
+    width: 100%;
+  }
+
+  p {
+    grid-column: 8/13;
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  .skillz {
+    margin-top: 20vh;
+    grid-row: 2/3;
+    grid-column: 2/13;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 5vh;
+
+    div {
+      width: 28%;
+      box-sizing: border-box;
+      margin-bottom: 12vh;
+
+      p {
+        font-size: 16px;
+        line-height: 21px;
+        text-align: left;
+      }
+    }
+  }
+
+  .collaborated {
+    grid-row: 3/4;
+    grid-column: 2/5;
+
+    h1 {
+      margin-bottom: 40px;
+      font-size: 30px;
+    }
+
+    p {
+      font-size: 25px;
+      font-weight: 500;
+    }
+  }
+
+  .projects {
+    grid-row: 3/4;
+    grid-column: 6/13;
+
+    p {
+      float: left;
+      width: 42.5%;
+      margin-top: 29px;
+      margin-bottom: 0px;
+    }
+
+    p:last-child {
+      width: 15%;
+    }
+
+    #labels {
+      color: #5a5a5a;
+      opacity: 0.5;
     }
   }
 }

@@ -9,7 +9,15 @@ function Navigation(props) {
           <a href="about">About</a>
         </li>
         <li>
-          <a href="contact">Contact</a>
+          <a
+            href="contact"
+            onClick={(e) => {
+              window.location = "mailto:gauthierbossuyt@hotmail.com";
+              e.preventDefault();
+            }}
+          >
+            Contact
+          </a>
         </li>
       </ul>
     </div>

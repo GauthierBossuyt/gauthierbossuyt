@@ -128,9 +128,9 @@ export default function App() {
     surface.current.style.width = `calc(100vw + ${widthContainer}px)`;
     library.current.style.width = `${widthContainer}px`;
     if (isOneOpen) {
-      window.scrollBy({ left: bigWidth, behavior: "smooth" });
+      window.scrollBy({ left: smallWidth, behavior: "smooth" });
     } else {
-      window.scrollBy({ left: -bigWidth, behavior: "smooth" });
+      window.scrollBy({ left: -smallWidth, behavior: "smooth" });
     }
   };
 
