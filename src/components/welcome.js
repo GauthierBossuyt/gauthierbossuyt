@@ -16,6 +16,9 @@ function Welcome(props) {
           </div>
         </div>
       </div>
+      <p className="notification">
+        For the best experience use Google Chrome or Firefox
+      </p>
     </div>
   );
 }

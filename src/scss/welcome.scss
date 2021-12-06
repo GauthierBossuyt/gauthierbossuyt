@@ -41,6 +41,12 @@
       }
     }
   }
+  .notification {
+    position: absolute;
+    bottom: 15px;
+    color: $primary-color;
+    opacity: 0.25;
+  }
 
   /* 
     SCROLL DOWN
