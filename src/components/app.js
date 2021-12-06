@@ -7,158 +7,196 @@ let smallWidth = 157;
 let bigWidth = 760;
 
 export default function App() {
-  const A = useRef(null);
-  const B = useRef(null);
-  let pos = {
-    A: { start: 0, end: 0 },
-    B: { start: 0, end: 0 },
-  };
-  let windowPos = {
-    x: window.scrollX,
-    y: window.scrollX + window.innerWidth,
-    z: window.scrollX + window.innerWidth / 2,
-  };
-  let current = A;
-  let target = B;
-  let change = true;
-  let direction = "left";
-
-  document.body.onmousedown = (e) => {
-    if (e.button === 1) return false;
-  };
-
-  document.body.onscroll = (e) => {
-    changePosWindow();
-    setTargetAndCurrent();
-    setDirection();
-    moveContainer();
-  };
-
-  useEffect(() => {
-    pos = {
-      A: { start: 0, end: A.current.clientWidth },
-      B: { start: 0 - B.current.width * -1, end: 0 },
+    const A = useRef(null);
+    const B = useRef(null);
+    let pos = {
+        A: { start: 0, end: 0 },
+        B: { start: 0, end: 0 },
     };
-  });
-
-  let changePosWindow = () => {
-    windowPos = {
-      x: window.scrollX,
-      y: window.scrollX + window.innerWidth,
-      z: window.scrollX + window.innerWidth / 2,
+    let windowPos = {
+        x: window.scrollX,
+        y: window.scrollX + window.innerWidth,
+        z: window.scrollX + window.innerWidth / 2,
     };
-  };
+    let current = A;
+    let target = B;
+    let change = true;
+    let direction = "left";
 
-  let setTargetAndCurrent = () => {
-    if (pos.A.start < windowPos.x && pos.A.end > windowPos.y) {
-      current = A;
-      target = B;
-      change = true;
-    } else if (pos.B.start < windowPos.x && pos.B.end > windowPos.y) {
-      current = B;
-      target = A;
-      change = true;
-    } else {
-      change = false;
-    }
-  };
+    document.body.onmousedown = (e) => {
+        if (e.button === 1) return false;
+    };
 
-  let setDirection = () => {
-    let middle;
-    if (current === B) {
-      middle = pos.B.start + B.current.clientWidth / 2;
-    } else if (current === A) {
-      middle = pos.A.start + A.current.clientWidth / 2;
-    }
+    document.body.onscroll = (e) => {
+        changePosWindow();
+        setTargetAndCurrent();
+        setDirection();
+        moveContainer();
+    };
 
-    if (middle > windowPos.z) {
-      direction = "left";
-    } else if (middle < windowPos.z) {
-      direction = "right";
-    }
-  };
-
-  let moveContainer = () => {
-    if (target === B && change) {
-      if (direction === "left") {
-        B.current.style.left = `${pos.A.start - B.current.clientWidth}px`;
+    useEffect(() => {
         pos = {
-          ...pos,
-          B: {
-            start: pos.A.start - B.current.clientWidth,
-            end: pos.A.start,
-          },
+            A: { start: 0, end: A.current.clientWidth },
+            B: { start: 0 - B.current.width * -1, end: 0 },
         };
-      } else if (direction === "right") {
-        B.current.style.left = `${pos.A.end}px`;
-        pos = {
-          ...pos,
-          B: {
-            start: pos.A.end,
-            end: pos.A.end + B.current.clientWidth,
-          },
+    });
+
+    let changePosWindow = () => {
+        windowPos = {
+            x: window.scrollX,
+            y: window.scrollX + window.innerWidth,
+            z: window.scrollX + window.innerWidth / 2,
         };
-      }
-    } else if (target === A && change) {
-      if (direction === "left") {
-        A.current.style.left = `${pos.B.start - A.current.clientWidth}px`;
-        pos = {
-          ...pos,
-          A: { start: pos.B.start - A.current.clientWidth, end: pos.B.start },
-        };
-      } else if (direction === "right") {
-        A.current.style.left = `${pos.B.end}px`;
-        pos = {
-          ...pos,
-          A: {
-            start: pos.B.end,
-            end: pos.B.end + B.current.clientWidth,
-          },
-        };
-      }
-    }
-  };
+    };
 
-  let changeWidth = (Q, isOneOpen, library, surface) => {
-    let widthContainer = smallWidth * Q;
-    if (isOneOpen) {
-      widthContainer += bigWidth - smallWidth;
-    }
+    let setTargetAndCurrent = () => {
+        if (pos.A.start < windowPos.x && pos.A.end > windowPos.y) {
+            current = A;
+            target = B;
+            change = true;
+        } else if (pos.B.start < windowPos.x && pos.B.end > windowPos.y) {
+            current = B;
+            target = A;
+            change = true;
+        } else {
+            change = false;
+        }
+    };
 
-    surface.current.style.width = `calc(100vw + ${widthContainer}px)`;
-    library.current.style.width = `${widthContainer}px`;
-    if (isOneOpen) {
-      window.scrollBy({ left: smallWidth, behavior: "smooth" });
-    } else {
-      window.scrollBy({ left: -smallWidth, behavior: "smooth" });
-    }
-  };
+    let setDirection = () => {
+        let middle;
+        if (current === B) {
+            middle = pos.B.start + B.current.clientWidth / 2;
+        } else if (current === A) {
+            middle = pos.A.start + A.current.clientWidth / 2;
+        }
 
-  let changeDirection = (event) => {
-    if (event.deltaY !== 0) {
-      window.scrollBy({ left: event.deltaY * 2.5, behavior: "smooth" });
-    }
-    if (event.deltaX !== 0) {
-      window.scrollBy({ left: event.deltaX * 2.5, behavior: "smooth" });
-    }
-  };
+        if (middle > windowPos.z) {
+            direction = "left";
+        } else if (middle < windowPos.z) {
+            direction = "right";
+        }
+    };
 
-  return (
-    <div>
-      <div id="A" className="surface" ref={A} onWheelCapture={changeDirection}>
-        <div className="content">
-          <Navigation />
-          <Welcome />
+    let moveContainer = () => {
+        if (target === B && change) {
+            if (direction === "left") {
+                B.current.style.left = `${
+                    pos.A.start - B.current.clientWidth
+                }px`;
+                pos = {
+                    ...pos,
+                    B: {
+                        start: pos.A.start - B.current.clientWidth,
+                        end: pos.A.start,
+                    },
+                };
+            } else if (direction === "right") {
+                B.current.style.left = `${pos.A.end}px`;
+                pos = {
+                    ...pos,
+                    B: {
+                        start: pos.A.end,
+                        end: pos.A.end + B.current.clientWidth,
+                    },
+                };
+            }
+        } else if (target === A && change) {
+            if (direction === "left") {
+                A.current.style.left = `${
+                    pos.B.start - A.current.clientWidth
+                }px`;
+                pos = {
+                    ...pos,
+                    A: {
+                        start: pos.B.start - A.current.clientWidth,
+                        end: pos.B.start,
+                    },
+                };
+            } else if (direction === "right") {
+                A.current.style.left = `${pos.B.end}px`;
+                pos = {
+                    ...pos,
+                    A: {
+                        start: pos.B.end,
+                        end: pos.B.end + B.current.clientWidth,
+                    },
+                };
+            }
+        }
+    };
+
+    let changeWidth = (Q, isOneOpen, library, surface) => {
+        let widthContainer = smallWidth * Q;
+        if (isOneOpen) {
+            widthContainer += bigWidth - smallWidth;
+        }
+
+        surface.current.style.width = `calc(100vw + ${widthContainer}px)`;
+        library.current.style.width = `${widthContainer}px`;
+        if (isOneOpen) {
+            if (target === B) {
+                pos.B.start = pos.B.start + bigWidth - smallWidth;
+                pos.B.end = pos.B.end + bigWidth - smallWidth;
+                B.current.style.left = `${pos.B.start}px`;
+            } else if (target === A) {
+                pos.A.start = pos.A.start + bigWidth - smallWidth;
+                pos.A.end = pos.A.end + bigWidth - smallWidth;
+                A.current.style.left = `${pos.A.start}px`;
+            }
+            window.scrollBy({ left: smallWidth, behavior: "smooth" });
+        } else {
+            if (target === B) {
+                pos.B.start = pos.B.start - bigWidth + smallWidth;
+                pos.B.end = pos.B.end - bigWidth + smallWidth;
+                B.current.style.left = `${pos.B.start}px`;
+            } else if (target === A) {
+                pos.A.start = pos.A.start - bigWidth + smallWidth;
+                if (pos.A.start < 0) {
+                    pos.A.start = 0;
+                }
+                pos.A.end = pos.A.end - bigWidth + smallWidth;
+                A.current.style.left = `${pos.A.start}px`;
+            }
+            window.scrollBy({ left: -smallWidth, behavior: "smooth" });
+        }
+    };
+
+    let changeDirection = (event) => {
+        if (event.deltaY !== 0) {
+            window.scrollBy({ left: event.deltaY * 2.5, behavior: "smooth" });
+        }
+        if (event.deltaX !== 0) {
+            window.scrollBy({ left: event.deltaX * 2.5, behavior: "smooth" });
+        }
+    };
+
+    return (
+        <div>
+            <div
+                id="A"
+                className="surface"
+                ref={A}
+                onWheelCapture={changeDirection}
+            >
+                <div className="content">
+                    <Navigation />
+                    <Welcome />
+                </div>
+                <Library onResize={changeWidth} surface={A} />
+            </div>
+            <div
+                id="B"
+                className="surface"
+                ref={B}
+                onWheelCapture={changeDirection}
+            >
+                <div className="content">
+                    <Navigation />
+                    <Welcome />
+                </div>
+                <Library onResize={changeWidth} surface={B} />
+            </div>
         </div>
-        <Library onResize={changeWidth} surface={A} />
-      </div>
-      <div id="B" className="surface" ref={B} onWheelCapture={changeDirection}>
-        <div className="content">
-          <Navigation />
-          <Welcome />
-        </div>
-        <Library onResize={changeWidth} surface={B} />
-      </div>
-    </div>
-  );
+    );
 }
