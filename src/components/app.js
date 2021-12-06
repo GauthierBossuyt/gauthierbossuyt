@@ -22,6 +22,7 @@ export default function App() {
     let target = B;
     let change = true;
     let direction = "left";
+    let order = { 0: B, 1: A };
 
     document.body.onmousedown = (e) => {
         if (e.button === 1) return false;
@@ -91,6 +92,7 @@ export default function App() {
                         end: pos.A.start,
                     },
                 };
+                order = { 0: B, 1: A };
             } else if (direction === "right") {
                 B.current.style.left = `${pos.A.end}px`;
                 pos = {
@@ -100,6 +102,7 @@ export default function App() {
                         end: pos.A.end + B.current.clientWidth,
                     },
                 };
+                order = { 0: A, 1: B };
             }
         } else if (target === A && change) {
             if (direction === "left") {
@@ -113,6 +116,7 @@ export default function App() {
                         end: pos.B.start,
                     },
                 };
+                order = { 0: A, 1: B };
             } else if (direction === "right") {
                 A.current.style.left = `${pos.B.end}px`;
                 pos = {
@@ -122,8 +126,9 @@ export default function App() {
                         end: pos.B.end + B.current.clientWidth,
                     },
                 };
+                order = { 0: B, 1: A };
             }
-        }
+        }   
     };
 
     let changeWidth = (Q, isOneOpen, library, surface) => {

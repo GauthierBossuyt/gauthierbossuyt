@@ -17,6 +17,7 @@ export default function Library(props) {
     }, []);
 
     let clicked = (event) => {
+        console.log(event.nativeEvent.path);
         let newList = new Array(json.projects.length).fill(false);
         if (!status[event.target.id - 1]) {
             newList[event.target.id - 1] = true;
