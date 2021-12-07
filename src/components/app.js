@@ -158,32 +158,32 @@ export default function App() {
         surface.current.style.width = `calc(100vw + ${widthContainer}px)`;
         library.current.style.width = `${widthContainer}px`;
         if (isOneOpen) {
-            if (target === B) {
-                pos.B.start = pos.B.start + bigWidth - smallWidth;
-                pos.B.end = pos.B.end + bigWidth - smallWidth;
-                B.current.style.left = `${pos.B.start}px`;
-            } else if (target === A) {
-                pos.A.start = pos.A.start + bigWidth - smallWidth;
-                pos.A.end = pos.A.end + bigWidth - smallWidth;
-                A.current.style.left = `${pos.A.start}px`;
-            }
+            // if (target === B) {
+            //     pos.B.start = pos.B.start + bigWidth - smallWidth;
+            //     pos.B.end = pos.B.end + bigWidth - smallWidth;
+            //     B.current.style.left = `${pos.B.start}px`;
+            // } else if (target === A) {
+            //     pos.A.start = pos.A.start + bigWidth - smallWidth;
+            //     pos.A.end = pos.A.end + bigWidth - smallWidth;
+            //     A.current.style.left = `${pos.A.start}px`;
+            // }
             window.scrollBy({
                 left: bigWidth - smallWidth,
                 behavior: "smooth",
             });
         } else {
-            if (target === B) {
-                pos.B.start = pos.B.start - bigWidth + smallWidth;
-                pos.B.end = pos.B.end - bigWidth + smallWidth;
-                B.current.style.left = `${pos.B.start}px`;
-            } else if (target === A) {
-                pos.A.start = pos.A.start - bigWidth + smallWidth;
-                if (pos.A.start < 0) {
-                    pos.A.start = 0;
-                }
-                pos.A.end = pos.A.end - bigWidth + smallWidth;
-                A.current.style.left = `${pos.A.start}px`;
-            }
+            // if (target === B) {
+            //     pos.B.start = pos.B.start - bigWidth + smallWidth;
+            //     pos.B.end = pos.B.end - bigWidth + smallWidth;
+            //     B.current.style.left = `${pos.B.start}px`;
+            // } else if (target === A) {
+            //     pos.A.start = pos.A.start - bigWidth + smallWidth;
+            //     if (pos.A.start < 0) {
+            //         pos.A.start = 0;
+            //     }
+            //     pos.A.end = pos.A.end - bigWidth + smallWidth;
+            //     A.current.style.left = `${pos.A.start}px`;
+            //}
             window.scrollBy({
                 left: -bigWidth + smallWidth,
                 behavior: "smooth",
@@ -192,8 +192,7 @@ export default function App() {
     };
 
     let changeDirection = (event) => {
-        console.log(event);
-        if (event.deltaY > 0) {
+        if (event.deltaY !== 0) {
             window.scrollBy({ left: event.deltaY * 2.5, behavior: "smooth" });
         }
         if (event.deltaX !== 0) {
@@ -237,6 +236,13 @@ export default function App() {
                     status={B_status}
                 />
             </div>
+            {window.innerWidth < 1000 ? (
+                <h1>
+                    Oh, Something went wrong <br /> Try refreshing the page
+                </h1>
+            ) : (
+                ""
+            )}
         </div>
     );
 }

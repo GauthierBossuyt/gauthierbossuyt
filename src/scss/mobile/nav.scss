@@ -1,0 +1,91 @@
+.nav {
+    height: 55px;
+    padding-top: 25px;
+    h1 {
+        margin: 0;
+        margin-left: 36px;
+        font-size: 5.5vw;
+        font-weight: 700;
+        grid-column: 1/4;
+    }
+
+    .menu {
+        position: absolute;
+        top: 12px;
+        right: 36px;
+        z-index: 101;
+    }
+}
+
+.test {
+    position: absolute;
+    top: 0;
+    background-color: $primary-color;
+    width: 100vw;
+    overflow-y: hidden;
+    z-index: 100;
+
+    ul {
+        height: 40vh;
+        margin: 0;
+        padding: 90px 36px 0px;
+        font-size: 15vw;
+        font-family: $title-font;
+        text-align: right;
+        list-style: none;
+        padding-left: 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: right;
+        flex-direction: column;
+
+        li {
+            padding-bottom: 2vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: $background-color;
+            text-transform: uppercase;
+        }
+    }
+
+    .info {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: $primary-color;
+
+        h1 {
+            font-size: 7vw;
+            text-align: center;
+            padding-bottom: 5vh;
+        }
+
+        .socials {
+            img {
+                filter: invert(87%) sepia(1%) saturate(7441%) hue-rotate(199deg)
+                    brightness(135%) contrast(73%);
+                width: 55px;
+            }
+            width: 100%;
+            text-align: center;
+            padding-bottom: 30px;
+        }
+    }
+
+    h1 {
+        color: $background-color;
+    }
+}
+
+.bg-nav {
+    animation: openNav 1.2s ease-out forwards;
+}
+
+.sm-nav {
+    animation: closeNav 1.2s ease-out forwards;
+}

@@ -1,73 +1,110 @@
 @import "./scss/variables.scss";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,700&family=Work+Sans:wght@700&display=swap");
 
-@import "./scss/animations/animations.scss";
+@media only screen and (min-width: 1000px) {
+    @import "./scss/animations/animations.scss";
 
-@import "./scss/welcome.scss";
-@import "./scss/nav.scss";
-@import "./scss/library.scss";
-@import "./scss/about.scss";
+    @import "./scss/welcome.scss";
+    @import "./scss/nav.scss";
+    @import "./scss/library.scss";
+    @import "./scss/about.scss";
 
-body {
-    margin: 0;
-    background-color: $background-color;
-    width: 100%;
+    body {
+        margin: 0;
+        background-color: $background-color;
+        width: 100%;
 
-    //width: calc(100vw + 471px);
+        //width: calc(100vw + 471px);
+    }
+
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    body::-webkit-scrollbar-thumb:horizontal {
+        display: none;
+    }
+
+    // #root {
+    //     height: 100vh;
+    // }
+
+    #A,
+    #B {
+        position: absolute;
+        height: 100vh;
+    }
+
+    #A {
+        left: 0;
+    }
+
+    #B {
+        left: calc((100vw + 785px) * -1);
+    }
+    .surface {
+        height: 100vh;
+        width: calc(100vw + 785px);
+    }
+
+    h1 {
+        font-family: $title-font;
+        font-weight: $title-weight;
+        color: $primary-color;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        color: white;
+        font-family: $title-font;
+        font-weight: $title-weight;
+        text-transform: uppercase;
+        font-size: 25px;
+    }
+
+    p {
+        font-family: $text-font;
+        color: $primary-color;
+    }
+
+    .content {
+        width: 100vw;
+        height: 100vh;
+        float: left;
+    }
 }
 
-body::-webkit-scrollbar {
-    display: none;
-}
+@media only screen and (max-width: 1000px) {
+    @import "./scss/mobile/nav.scss";
+    @import "./scss/mobile/app.scss";
+    @import "./scss/animations/animations.scss";
 
-body::-webkit-scrollbar-thumb:horizontal {
-    display: none;
-}
+    #A,
+    #B {
+        display: none;
+    }
+    body {
+        margin: 0;
+        background-color: $background-color;
+    }
 
-// #root {
-//     height: 100vh;
-// }
+    h1 {
+        font-family: $title-font;
+        font-weight: $title-weight;
+        color: $primary-color;
+        text-transform: uppercase;
+    }
 
-#A,
-#B {
-    position: absolute;
-    height: 100vh;
-}
+    h2 {
+        color: white;
+        font-family: $title-font;
+        font-weight: $title-weight;
+        text-transform: uppercase;
+        font-size: 25px;
+    }
 
-#A {
-    left: 0;
-}
-
-#B {
-    left: calc((100vw + 785px) * -1);
-}
-.surface {
-    height: 100vh;
-    width: calc(100vw + 785px);
-}
-
-h1 {
-    font-family: $title-font;
-    font-weight: $title-weight;
-    color: $primary-color;
-    text-transform: uppercase;
-}
-
-h2 {
-    color: white;
-    font-family: $title-font;
-    font-weight: $title-weight;
-    text-transform: uppercase;
-    font-size: 25px;
-}
-
-p {
-    font-family: $text-font;
-    color: $primary-color;
-}
-
-.content {
-    width: 100vw;
-    height: 100vh;
-    float: left;
+    p {
+        font-family: $text-font;
+        color: $primary-color;
+    }
 }

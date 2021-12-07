@@ -1,8 +1,26 @@
 @keyframes loading {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 0%;
-  }
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0%;
+    }
+}
+
+@keyframes openNav {
+    0% {
+        height: 0vh;
+    }
+    100% {
+        height: 100vh;
+    }
+}
+
+@keyframes closeNav {
+    0% {
+        height: 100vh;
+    }
+    100% {
+        height: 0vh;
+    }
 }
