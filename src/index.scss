@@ -9,64 +9,65 @@
 @import "./scss/about.scss";
 
 body {
-  margin: 0;
-  background-color: $background-color;
-  width: 100%;
-  //width: calc(100vw + 471px);
+    margin: 0;
+    background-color: $background-color;
+    width: 100%;
+
+    //width: calc(100vw + 471px);
 }
 
 body::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 body::-webkit-scrollbar-thumb:horizontal {
-  display: none;
+    display: none;
 }
 
 // #root {
-//  height: 100vh;
+//     height: 100vh;
 // }
 
 #A,
 #B {
-  position: absolute;
-  height: 100vh;
+    position: absolute;
+    height: 100vh;
 }
 
 #A {
-  left: 0;
+    left: 0;
 }
 
 #B {
-  left: calc((100vw + 785px) * -1);
+    left: calc((100vw + 785px) * -1);
 }
 .surface {
-  height: 100vh;
-  width: calc(100vw + 785px);
+    height: 100vh;
+    width: calc(100vw + 785px);
 }
 
 h1 {
-  font-family: $title-font;
-  font-weight: $title-weight;
-  color: $primary-color;
-  text-transform: uppercase;
+    font-family: $title-font;
+    font-weight: $title-weight;
+    color: $primary-color;
+    text-transform: uppercase;
 }
 
 h2 {
-  color: white;
-  font-family: $title-font;
-  font-weight: $title-weight;
-  text-transform: uppercase;
-  font-size: 25px;
+    color: white;
+    font-family: $title-font;
+    font-weight: $title-weight;
+    text-transform: uppercase;
+    font-size: 25px;
 }
 
 p {
-  font-family: $text-font;
-  color: $primary-color;
+    font-family: $text-font;
+    color: $primary-color;
 }
 
 .content {
-  width: 100vw;
-  height: 100vh;
-  float: left;
+    width: 100vw;
+    height: 100vh;
+    float: left;
 }
