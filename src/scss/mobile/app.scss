@@ -44,6 +44,14 @@
             z-index: 0;
         }
     }
+
+    .intro {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 300px;
+    }
 }
 .swiper-container {
     height: 75%;

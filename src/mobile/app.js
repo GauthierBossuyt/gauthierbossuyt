@@ -40,7 +40,7 @@ export default function App() {
                     onSlideChange={(e) => {
                         setCurrentProject(Data.projects[e.realIndex]);
                     }}
-                    loop={true}
+                    loop
                 >
                     {Data.projects.map((project, index) => (
                         <SwiperSlide key={index}>
