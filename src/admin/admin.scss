@@ -1,0 +1,208 @@
+.admin_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.admin_login {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    border-radius: 10px;
+
+    h1 {
+        margin-bottom: 0px;
+    }
+
+    #error {
+        color: red;
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+    input,
+    input[type="password"],
+    input[type="search"] {
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: none;
+        padding: 6px 10px;
+        box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.006),
+            6.7px 6.7px 5.3px rgba(0, 0, 0, 0.005),
+            12.5px 12.5px 10px rgba(0, 0, 0, 0.005),
+            22.3px 22.3px 17.9px rgba(0, 0, 0, 0.008),
+            41.8px 41.8px 33.4px rgba(0, 0, 0, 0.017),
+            100px 100px 80px rgba(0, 0, 0, 0.07);
+    }
+
+    button {
+        margin-bottom: 25px;
+        background-color: $primary-color;
+        color: $background-color;
+        box-shadow: none;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 35px;
+    }
+}
+
+.admin_dashboard {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    .dashboard {
+        grid-column: 2/13;
+        padding: 4vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        h1 {
+            margin: 0;
+        }
+    }
+
+    .admin_nav {
+        grid-column: 1/2;
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        background-color: $primary-color;
+
+        .nav-text {
+            display: flex;
+            justify-content: center;
+        }
+        h1 {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            color: white;
+            margin: 5vh 0;
+            font-size: 4vh;
+            display: inline-block;
+        }
+
+        .nav-icons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 4vh 0 0;
+            img {
+                max-width: 40px;
+                width: 60%;
+                margin-bottom: 5vh;
+                cursor: pointer;
+            }
+            .active {
+                filter: opacity(1);
+            }
+            .inactive {
+                filter: opacity(0.5);
+            }
+        }
+    }
+}
+.admin-projects {
+    #title {
+        margin-bottom: 10vh;
+    }
+
+    .admin-project {
+        margin-bottom: 5vh;
+        position: relative;
+        overflow: hidden;
+        padding: 50px 40px;
+        border-radius: 6px;
+        box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.009),
+            6.7px 6.7px 5.3px rgba(0, 0, 0, 0.006),
+            12.5px 12.5px 10px rgba(0, 0, 0, 0.003),
+            22.3px 22.3px 17.9px rgba(0, 0, 0, 0.003),
+            41.8px 41.8px 33.4px rgba(0, 0, 0, 0.01),
+            100px 100px 80px rgba(0, 0, 0, 0.07);
+
+        img {
+            width: 100%;
+        }
+
+        .admin-sm-project {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            h1 {
+                display: inline-block;
+                color: $background-color;
+                cursor: pointer;
+                margin-left: 40px;
+            }
+
+            img {
+                width: 40px;
+                cursor: pointer;
+                margin-left: 20px;
+                opacity: 1;
+            }
+
+            img:hover {
+                fill: red;
+            }
+        }
+
+        .admin-bg-project {
+            padding-top: 45px;
+            h1,
+            h2,
+            p {
+                color: $background-color;
+            }
+
+            h2 {
+                font-size: 14px;
+            }
+
+            .extra-info-admin {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            p {
+                font-size: 12px;
+                margin-top: 0;
+            }
+
+            .admin-project-collabs {
+                font-size: 16px;
+            }
+        }
+        #admin-project-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -5;
+            filter: brightness(20%);
+            -webkit-filter: brightness(20%);
+            -moz-filter: brightness(20%);
+        }
+
+        #arrow {
+            margin-left: 0;
+            position: absolute;
+            left: 20px;
+        }
+
+        .open {
+            animation: turnRight 0.5s ease-out forwards;
+        }
+
+        .close {
+            animation: turnLeft 0.5s ease-out forwards;
+        }
+    }
+}

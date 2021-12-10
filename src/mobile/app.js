@@ -10,6 +10,15 @@ SwiperCore.use([Pagination]);
 export default function App() {
     const [currentProject, setCurrentProject] = useState(Data.projects[0]);
 
+    useEffect(() => {
+        async function fetchData() {
+            fetch("http://localhost/projects")
+                .then((resp) => resp.json())
+                .then((resp) => console.log(resp));
+        }
+        fetchData();
+    }, []);
+    
     let convertDataToString = (data) => {
         let string = "By";
         data.forEach((element, index) => {
@@ -48,7 +57,7 @@ export default function App() {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                <div class="info">
+                <div className="info">
                     <h1>{currentProject.name}</h1>
                     <p>{convertDataToString(currentProject.collaborators)}</p>
                     <button

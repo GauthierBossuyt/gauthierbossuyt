@@ -3,7 +3,7 @@ export default function Slide(props) {
         <div className="slide">
             <div className="image">
                 <div className="up"></div> <div className="down"></div>
-                <div class="img">
+                <div className="img">
                     <img src={props.project.image} alt={props.project.name} />
                 </div>
             </div>

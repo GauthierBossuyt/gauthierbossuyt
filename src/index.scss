@@ -1,5 +1,6 @@
 @import "./scss/variables.scss";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,700&family=Work+Sans:wght@700&display=swap");
+@import "./admin/admin.scss";
 
 @media only screen and (min-width: 1000px) {
     @import "./scss/animations/animations.scss";
@@ -109,3 +110,5 @@
         color: $primary-color;
     }
 }
+
+

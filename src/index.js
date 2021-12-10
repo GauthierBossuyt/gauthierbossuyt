@@ -5,6 +5,7 @@ import App from "./components/app";
 import About from "./components/about/about";
 import MobileApp from "./mobile/app";
 import MobileAbout from "./mobile/about";
+import Admin from "./admin/admin";
 
 import "./index.scss";
 let windowWidth = window.innerWidth;
@@ -20,6 +21,7 @@ ReactDOM.render(
                     path="/about"
                     element={windowWidth >= 1000 ? <About /> : <MobileAbout />}
                 />
+                <Route path="/admin" element={<Admin />} />
             </Routes>
         </Router>
     </React.StrictMode>,
