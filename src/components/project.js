@@ -1,5 +1,11 @@
+import { useEffect } from "react/cjs/react.development";
+
 export default function Project(props) {
     let project = props.data;
+
+    useEffect(() => {
+        console.log(props.status);
+    }, [props.status]);
 
     let convertDataToString = (data) => {
         let string = "";
@@ -29,14 +35,23 @@ export default function Project(props) {
             <div className={props.status ? "shown info" : "hidden info"}>
                 <h2>{project.client}</h2>
                 <p>{project.description}</p>
-                <p
+                <div
+                    id="collaborators"
                     className={
                         project.collaborators.length > 0 ? "shown" : "hidden"
                     }
                 >
-                    In collaboration with
-                    {convertDataToString(project.collaborators)}
-                </p>
+                    <p>In collaboration with</p>
+                    {project.collaborators.map((person) => (
+                        <p className="person"
+                            onClick={() => {
+                                window.open(person.url, "_target");
+                            }}
+                        >
+                            {person.name}
+                        </p>
+                    ))}
+                </div>
                 <button
                     className={project.url.length > 0 ? "shown" : "hidden"}
                     onClick={() => {

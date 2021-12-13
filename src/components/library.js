@@ -7,29 +7,33 @@ export default function Library(props) {
         new Array(props.data.length).fill(false)
     );
     const library = useRef(null);
+    const [test, setTest] = useState(true);
 
     useEffect(() => {
         setStatus(props.status);
-    }, [props.status]);
+        library.current.style.width = `${props.width}px`;
+    }, [props.status, props.width]);
 
     let clicked = (event) => {
-        console.log(event.target.id);
-        let newList = new Array(props.data.length).fill(false);
-        if (!status[event.target.id]) {
-            newList[event.target.id] = true;
-        }
+        console.log("click");
+        let id = event.target.id;
+        let current = status.indexOf(true);
 
-        setStatus(newList);
-        props.onResize(
-            props.data.length,
-            newList.includes(true),
-            library,
-            props.surface
-        );
+        if (id !== current) {
+            let array = status;
+            array[current] = false;
+            array[id] = true;
+            setStatus(array);
+            setTest(!test);
+        }
     };
 
     return (
-        <div className="library" id="library" ref={library}>
+        <div
+            className={test ? "library" : "library"}
+            id="library"
+            ref={library}
+        >
             {props.data.map((project, index) => (
                 <Project
                     data={project}

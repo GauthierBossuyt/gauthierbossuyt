@@ -2,22 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import Welcome from "./welcome";
 import Navigation from "./navigation";
 import Library from "./library";
-import json from "../data/projects.json";
 
 let smallWidth = 157;
 let bigWidth = 760;
 
 export default function App() {
     const A = useRef(null);
-    const [data, setData] = useState([]);
     const B = useRef(null);
-    const [A_status, setAStatus] = useState([null]);
-    const [B_status, setBStatus] = useState([null]);
+    const [data, setData] = useState([]);
+    const [status, setStatus] = useState([null]);
+    const [width, setWidth] = useState();
     const [current, setCurrent] = useState(A);
     const [target, setTarget] = useState(B);
     const [change, setChange] = useState(true);
-    const [direction, setDirection] = useState("left");
-    const [order, setOrder] = useState({ 0: B, 1: A });
+    const [direction, setDirection] = useState("");
+    const [prevDirection, setPrevDirection] = useState("");
     const [pos, setpos] = useState({
         A: { start: 0, end: 0 },
         B: { start: 0, end: 0 },
@@ -34,29 +33,45 @@ export default function App() {
 
     document.body.onscroll = (e) => {
         changePosWindow();
-        setTargetAndCurrent();
-        onWindowScroll();
-        moveContainer();
+        setCurrentAndTarget();
+        SetMiddle();
+        MoveContainer();
     };
 
     useEffect(() => {
         async function fetchData() {
             fetch("http://localhost/projects")
                 .then((resp) => resp.json())
-                .then((resp) => setData(resp))
+                .then((resp) => {
+                    let favos = resp.filter((project) => project.favourite);
+                    setData(favos);
+                    let Q = favos.length - 1;
+                    let total = 157 * Q + 760;
+                    setWidth(total);
+                    A.current.style.width = `calc(100vw + ${total}px)`;
+                    B.current.style.width = `calc(100vw + ${total}px)`;
+                    B.current.style.left = `calc((100vw + ${total}px) * -1)`;
+                    let array = [];
+                    for (let i = 0; i < favos.length; i++) {
+                        if (i === 0) {
+                            array.push(true);
+                        } else {
+                            array.push(false);
+                        }
+                    }
+                    setStatus(array);
+                })
                 .then(() => {
                     setpos({
                         A: { start: 0, end: A.current.clientWidth },
                         B: { start: B.current.clientWidth, end: 0 },
                     });
-                    setAStatus(new Array(data.length).fill(false));
-                    setBStatus(new Array(data.length).fill(false));
                 });
         }
         fetchData();
     }, []);
 
-    let changePosWindow = () => {
+    const changePosWindow = () => {
         setWindowPos({
             x: window.scrollX,
             y: window.scrollX + window.innerWidth,
@@ -64,7 +79,7 @@ export default function App() {
         });
     };
 
-    let setTargetAndCurrent = () => {
+    const setCurrentAndTarget = () => {
         if (pos.A.start < windowPos.x && pos.A.end > windowPos.y) {
             setCurrent(A);
             setTarget(B);
@@ -78,14 +93,13 @@ export default function App() {
         }
     };
 
-    let onWindowScroll = () => {
+    const SetMiddle = () => {
         let middle;
         if (current === B) {
             middle = pos.B.start + B.current.clientWidth / 2;
         } else if (current === A) {
             middle = pos.A.start + A.current.clientWidth / 2;
         }
-
         if (middle > windowPos.z) {
             setDirection("left");
         } else if (middle < windowPos.z) {
@@ -93,104 +107,33 @@ export default function App() {
         }
     };
 
-    let moveContainer = () => {
-        if (target === B && change) {
-            if (direction === "left") {
-                B.current.style.left = `${
-                    pos.A.start - B.current.clientWidth
+    const MoveContainer = () => {
+        if (change) {
+            if (direction === "right") {
+                target.current.style.left = `${pos[current.current.id].end}px`;
+                let data = pos;
+                data[target.current.id] = {
+                    start: pos[current.current.id].end,
+                    end: pos[current.current.id].end + B.current.clientWidth,
+                };
+                setpos(data);
+            } else if (direction === "left") {
+                target.current.style.left = `${
+                    pos[current.current.id].start - target.current.clientWidth
                 }px`;
-                setpos({
-                    ...pos,
-                    B: {
-                        start: pos.A.start - B.current.clientWidth,
-                        end: pos.A.start,
-                    },
-                });
-                setOrder({ 0: B, 1: A });
-            } else if (direction === "right") {
-                B.current.style.left = `${pos.A.end}px`;
-                setpos({
-                    ...pos,
-                    B: {
-                        start: pos.A.end,
-                        end: pos.A.end + B.current.clientWidth,
-                    },
-                });
-                setOrder({ 0: A, 1: B });
+                let data = pos;
+                data[target.current.id] = {
+                    start:
+                        pos[current.current.id].start - B.current.clientWidth,
+                    end: pos[current.current.id].start,
+                };
+                setpos(data);
             }
-            setBStatus(new Array(data.length).fill(false));
-        } else if (target === A && change) {
-            if (direction === "left") {
-                A.current.style.left = `${
-                    pos.B.start - A.current.clientWidth
-                }px`;
-                setpos({
-                    ...pos,
-                    A: {
-                        start: pos.B.start - A.current.clientWidth,
-                        end: pos.B.start,
-                    },
-                });
-                setOrder({ 0: A, 1: B });
-            } else if (direction === "right") {
-                A.current.style.left = `${pos.B.end}px`;
-                setpos({
-                    ...pos,
-                    A: {
-                        start: pos.B.end,
-                        end: pos.B.end + B.current.clientWidth,
-                    },
-                });
-                setOrder({ 0: B, 1: A });
-            }
-            setAStatus(new Array(data.length).fill(false));
         }
+        setPrevDirection(direction);
     };
 
-    let changeWidth = (Q, isOneOpen, library, surface) => {
-        console.log(isOneOpen);
-        let widthContainer = smallWidth * Q;
-        if (isOneOpen) {
-            widthContainer += bigWidth - smallWidth;
-        }
-
-        surface.current.style.width = `calc(100vw + ${widthContainer}px)`;
-        library.current.style.width = `${widthContainer}px`;
-        if (isOneOpen) {
-            // if (target === B) {
-            //     pos.B.start = pos.B.start + bigWidth - smallWidth;
-            //     pos.B.end = pos.B.end + bigWidth - smallWidth;
-            //     B.current.style.left = `${pos.B.start}px`;
-            // } else if (target === A) {
-            //     pos.A.start = pos.A.start + bigWidth - smallWidth;
-            //     pos.A.end = pos.A.end + bigWidth - smallWidth;
-            //     A.current.style.left = `${pos.A.start}px`;
-            // }
-            window.scrollBy({
-                left: bigWidth - smallWidth,
-                behavior: "smooth",
-            });
-        } else {
-            // if (target === B) {
-            //     pos.B.start = pos.B.start - bigWidth + smallWidth;
-            //     pos.B.end = pos.B.end - bigWidth + smallWidth;
-            //     B.current.style.left = `${pos.B.start}px`;
-            // } else if (target === A) {
-            //     pos.A.start = pos.A.start - bigWidth + smallWidth;
-            //     if (pos.A.start < 0) {
-            //         pos.A.start = 0;
-            //     }
-            //     pos.A.end = pos.A.end - bigWidth + smallWidth;
-            //     A.current.style.left = `${pos.A.start}px`;
-            //}
-            window.scrollBy({
-                left: -bigWidth + smallWidth,
-                behavior: "smooth",
-            });
-        }
-    };
-
-    let changeDirection = (event) => {
+    const changeDirection = (event) => {
         if (event.deltaY !== 0) {
             window.scrollBy({ left: event.deltaY * 2.5, behavior: "smooth" });
         }
@@ -200,40 +143,20 @@ export default function App() {
     };
 
     return (
-        <div>
-            <div
-                id="A"
-                className="surface"
-                ref={A}
-                onWheelCapture={changeDirection}
-            >
+        <div onWheelCapture={changeDirection}>
+            <div id="A" className="surface" ref={A}>
                 <div className="content">
                     <Navigation />
                     <Welcome />
                 </div>
-                <Library
-                    onResize={changeWidth}
-                    surface={A}
-                    data={data}
-                    status={A_status}
-                />
+                <Library data={data} status={status} width={width} />
             </div>
-            <div
-                id="B"
-                className="surface"
-                ref={B}
-                onWheelCapture={changeDirection}
-            >
+            <div id="B" className="surface" ref={B}>
                 <div className="content">
                     <Navigation />
                     <Welcome />
                 </div>
-                <Library
-                    onResize={changeWidth}
-                    surface={B}
-                    data={data}
-                    status={B_status}
-                />
+                <Library data={data} status={status} width={width} />
             </div>
             {window.innerWidth < 1000 ? (
                 <h1>

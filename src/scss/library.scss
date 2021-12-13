@@ -147,6 +147,17 @@
             button:hover {
                 cursor: pointer;
             }
+
+            #collaborators {
+                display: flex;
+                p {
+                    margin-left: 8px;
+                }
+
+                .person:hover {
+                    border-bottom: 1px solid $background-color;
+                }
+            }
         }
     }
 
