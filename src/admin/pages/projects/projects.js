@@ -25,13 +25,17 @@ export default function Projects(props) {
 
   useEffect(() => {
     async function fetchData() {
-      let projects = await fetch("http://localhost/projects")
+      let projects = await fetch(
+        "https://gauthierbossuyt-api.herokuapp.com/projects"
+      )
         .then((resp) => resp.json())
         .then((resp) => {
           return resp;
         });
 
-      let collaborators = await fetch("http://localhost/collaborators")
+      let collaborators = await fetch(
+        "https://gauthierbossuyt-api.herokuapp.com/collaborators"
+      )
         .then((resp) => resp.json())
         .then((resp) => {
           return resp;
@@ -44,7 +48,7 @@ export default function Projects(props) {
   }, []);
 
   const toggleFavourite = async (id, user) => {
-    fetch("http://localhost/projects", {
+    fetch("https://gauthierbossuyt-api.herokuapp.com/projects", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -108,7 +112,7 @@ export default function Projects(props) {
   };
 
   const addProjectToDatabase = async (project) => {
-    fetch("http://localhost/projects", {
+    fetch("https://gauthierbossuyt-api.herokuapp.com/projects", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,7 +128,7 @@ export default function Projects(props) {
   };
 
   const updateProjectDatabase = async (project, id) => {
-    fetch("http://localhost/projects", {
+    fetch("https://gauthierbossuyt-api.herokuapp.com/projects", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -140,7 +144,7 @@ export default function Projects(props) {
   };
 
   const deleteProjectDatabase = async () => {
-    fetch("http://localhost/projects", {
+    fetch("https://gauthierbossuyt-api.herokuapp.com/projects", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

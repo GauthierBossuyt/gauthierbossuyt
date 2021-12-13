@@ -13,7 +13,9 @@ export default function Collaborators(props) {
 
   useEffect(() => {
     async function fetchData() {
-      let collaborators = await fetch("http://localhost/collaborators")
+      let collaborators = await fetch(
+        "https://gauthierbossuyt-api.herokuapp.com/collaborators"
+      )
         .then((resp) => resp.json())
         .then((resp) => {
           return resp;
@@ -30,7 +32,7 @@ export default function Collaborators(props) {
   };
 
   const deleteCollab = async (id, data) => {
-    // fetch("http://localhost/collaborators", {
+    // fetch("https://gauthierbossuyt-api.herokuapp.com/", {
     //   method: "DELETE",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -47,7 +49,7 @@ export default function Collaborators(props) {
   const saveToDatabase = async (e) => {
     let data = e.target.elements;
     if (edit) {
-      fetch("http://localhost/collaborators", {
+      fetch("https://gauthierbossuyt-api.herokuapp.com/collaborators", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +64,7 @@ export default function Collaborators(props) {
         .then((resp) => resp.json())
         .then((resp) => console.log(resp));
     } else if (create) {
-      fetch("http://localhost/collaborators", {
+      fetch("https://gauthierbossuyt-api.herokuapp.com/collaborators", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

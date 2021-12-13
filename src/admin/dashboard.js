@@ -12,13 +12,17 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     async function fetchData() {
-      let content = await fetch("http://localhost/content")
+      let content = await fetch(
+        "https://gauthierbossuyt-api.herokuapp.com/content"
+      )
         .then((resp) => resp.json())
         .then((resp) => {
           return resp;
         });
 
-      let collaborators = await fetch("http://localhost/collaborators")
+      let collaborators = await fetch(
+        "https://gauthierbossuyt-api.herokuapp.com/collaborators"
+      )
         .then((resp) => resp.json())
         .then((resp) => {
           return resp;

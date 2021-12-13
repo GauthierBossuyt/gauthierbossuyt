@@ -11,7 +11,9 @@ export default function Content(props) {
 
   useEffect(() => {
     async function fetchData() {
-      let content = await fetch("http://localhost/content")
+      let content = await fetch(
+        "https://gauthierbossuyt-api.herokuapp.com/content"
+      )
         .then((resp) => resp.json())
         .then((resp) => {
           return resp;
@@ -27,7 +29,7 @@ export default function Content(props) {
     if (editSkill) {
       let data = skills;
       data[content.target].text = e.target.elements[0].value;
-      fetch("http://localhost/content", {
+      fetch("https://gauthierbossuyt-api.herokuapp.com/content", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +44,7 @@ export default function Content(props) {
     } else if (editAbout) {
       let data = about;
       data.description = e.target.elements[0].value;
-      fetch("http://localhost/content", {
+      fetch("https://gauthierbossuyt-api.herokuapp.com/content", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
