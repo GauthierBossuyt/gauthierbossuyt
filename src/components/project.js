@@ -5,9 +5,9 @@ export default function Project(props) {
         let string = "";
         data.forEach((element, index) => {
             if (index === 0) {
-                string += " " + element;
+                string += " " + element.name;
             } else {
-                string += " & " + element;
+                string += " & " + element.name;
             }
 
             if (index === data.length - 1) {
@@ -20,10 +20,10 @@ export default function Project(props) {
 
     return (
         <div className={props.status ? "project_bg" : "project_sm"}>
-            <h1 className="name" id={project.id} onClick={props.onClick}>
+            <h1 className="name" id={props.index} onClick={props.onClick}>
                 {project.name}
             </h1>
-            <h1 className="year" id={project.id} onClick={props.onClick}>
+            <h1 className="year" id={props.index} onClick={props.onClick}>
                 {project.year}
             </h1>
             <div className={props.status ? "shown info" : "hidden info"}>
@@ -40,7 +40,7 @@ export default function Project(props) {
                 <button
                     className={project.url.length > 0 ? "shown" : "hidden"}
                     onClick={() => {
-                        window.open("https://google.com", "target_");
+                        window.open(project.url, "target_");
                     }}
                 >
                     Go to site
@@ -50,7 +50,7 @@ export default function Project(props) {
                 src={project.image}
                 alt={project.name}
                 onClick={props.onClick}
-                id={project.id}
+                id={props.index}
             />
         </div>
     );

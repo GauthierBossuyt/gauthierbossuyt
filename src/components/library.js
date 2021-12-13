@@ -13,9 +13,10 @@ export default function Library(props) {
     }, [props.status]);
 
     let clicked = (event) => {
+        console.log(event.target.id);
         let newList = new Array(props.data.length).fill(false);
-        if (!status[event.target.id - 1]) {
-            newList[event.target.id - 1] = true;
+        if (!status[event.target.id]) {
+            newList[event.target.id] = true;
         }
 
         setStatus(newList);
@@ -32,6 +33,7 @@ export default function Library(props) {
             {props.data.map((project, index) => (
                 <Project
                     data={project}
+                    index={index}
                     key={index}
                     onClick={clicked}
                     status={status[index]}

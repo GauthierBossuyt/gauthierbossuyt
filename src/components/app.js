@@ -41,10 +41,9 @@ export default function App() {
 
     useEffect(() => {
         async function fetchData() {
-            fetch("https://jsonplaceholder.typicode.com/todos/1")
+            fetch("http://localhost/projects")
                 .then((resp) => resp.json())
-                .then((resp) => console.log(resp))
-                .then(setData(json.projects))
+                .then((resp) => setData(resp))
                 .then(() => {
                     setpos({
                         A: { start: 0, end: A.current.clientWidth },
