@@ -40,8 +40,12 @@ export default function Dashboard(props) {
       <Nav active={displayActive} />
       <div className="dashboard">
         {Active === "projects" && <Projects code={props.code} />}
-        {Active === "content" && <Content content={content} />}
-        {Active === "collaborators" && <Collaborators collabs={collabs} />}
+        {Active === "content" && (
+          <Content content={content} code={props.code} />
+        )}
+        {Active === "collaborators" && (
+          <Collaborators collabs={collabs} code={props.code} />
+        )}
       </div>
     </div>
   );

@@ -24,7 +24,7 @@
 }
 
 .admin_login {
-  background-color: white;
+  background-color: $background-color;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,6 +34,7 @@
 
   h1 {
     margin-bottom: 0px;
+    font-size: 5vw;
   }
 
   #error {
@@ -45,25 +46,30 @@
   input[type="password"],
   input[type="search"] {
     margin-bottom: 15px;
-    border-radius: 6px;
+    background-color: $background-color;
     border: none;
+    border-bottom: 2px $primary-color solid;
     padding: 6px 10px;
-    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.006),
-      6.7px 6.7px 5.3px rgba(0, 0, 0, 0.005),
-      12.5px 12.5px 10px rgba(0, 0, 0, 0.005),
-      22.3px 22.3px 17.9px rgba(0, 0, 0, 0.008),
-      41.8px 41.8px 33.4px rgba(0, 0, 0, 0.017),
-      100px 100px 80px rgba(0, 0, 0, 0.07);
+    height: 40px;
+    font-size: 18px;
+    width: 30%;
+  }
+
+  input:focus {
+    outline: none;
   }
 
   button {
-    margin-bottom: 25px;
+    margin-top: 35px;
+    margin-bottom: 40px;
     background-color: $primary-color;
     color: $background-color;
     box-shadow: none;
     border: none;
     border-radius: 6px;
-    padding: 6px 35px;
+    font-size: 22px;
+    padding: 6px 48px;
+    cursor: pointer;
   }
 }
 
@@ -288,7 +294,7 @@
     margin-bottom: 5vh;
     position: relative;
     overflow: hidden;
-    padding: 50px 40px;
+    padding: 25px 40px;
     border-radius: 6px;
     width: 45%;
     //background-color: #121212;
@@ -384,6 +390,221 @@
 
     .close {
       animation: turnLeft 0.5s ease-out forwards;
+    }
+  }
+}
+
+.admin-collaborators {
+  .admin-collabs {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    position: relative;
+    .admin-collab-info {
+      background-color: white;
+      border-radius: 6px;
+      width: 47%;
+      padding: 20px 15px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: left;
+      align-items: baseline;
+      flex-wrap: wrap;
+
+      div {
+        width: 15%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      #edit,
+      #delete,
+      img {
+        width: 40px;
+        cursor: pointer;
+        margin-left: 20px;
+        opacity: 1;
+        filter: grayscale(1);
+      }
+
+      #edit:hover,
+      #delete:hover {
+        filter: grayscale(0);
+      }
+
+      h1 {
+        width: 85%;
+      }
+    }
+  }
+  .admin-collabs-form {
+    background-color: #12121275;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      width: 25%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      input {
+        margin-top: 15px;
+        height: 40px;
+        padding-left: 15px;
+        border-radius: 6px;
+        border: none;
+        background-color: rgb(240, 240, 240);
+        font-size: 16px;
+      }
+      div {
+        display: flex;
+        justify-content: space-between;
+        button {
+          background-color: $primary-color;
+          width: 30%;
+          border: none;
+          border-radius: 12px;
+          color: $background-color;
+          height: 30px;
+          margin-top: 50px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.admin-content {
+  margin-top: 50px;
+  display: flex;
+  justify-content: left;
+
+  #edit,
+  #delete,
+  img {
+    width: 40px;
+    cursor: pointer;
+    margin-left: 20px;
+    opacity: 1;
+    filter: grayscale(1);
+  }
+
+  #edit:hover,
+  #delete:hover {
+    filter: grayscale(0);
+  }
+
+  .admin-about-me {
+    width: 35%;
+    background-color: white;
+    padding: 25px 40px;
+    border-radius: 12px;
+    h1 {
+      margin-bottom: 30px;
+      width: 80%;
+    }
+
+    p {
+      text-align: justify;
+      font-size: 18px;
+      line-height: 25px;
+    }
+  }
+  .admin-skills {
+    width: 30%;
+    margin-left: 10%;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+
+    h1 {
+      width: 80%;
+    }
+
+    h2 {
+      color: $primary-color;
+    }
+  }
+  .admin-content-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    h1 {
+      margin-top: 40px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      margin-bottom: 0px;
+    }
+
+    #edit {
+      margin-top: 40px;
+      height: 30px;
+    }
+  }
+}
+.admin-content-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #12121280;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    width: 25%;
+    background-color: white;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+
+    h1 {
+      padding-bottom: 25px;
+    }
+
+    textarea {
+      width: 80%;
+      height: 20vh;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-family: $text-font;
+      padding: 15px;
+    }
+
+    div {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      button {
+        background-color: $primary-color;
+        width: 30%;
+        border: none;
+        border-radius: 12px;
+        color: $background-color;
+        height: 30px;
+        margin-top: 20px;
+        cursor: pointer;
+      }
     }
   }
 }
