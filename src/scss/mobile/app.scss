@@ -28,6 +28,21 @@
             margin-top: 10px;
             padding: 0px 36px;
         }
+
+        .collaborators {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 2vh 0;
+            p {
+                display: inline-block;
+                padding: 0;
+                margin: 0.5vh 0;
+                width: 50vw;
+            }
+        }
         button {
             font-family: $text-font;
             height: 35px;
@@ -106,6 +121,8 @@
             filter: brightness(65%);
             -webkit-filter: brightness(40%);
             -moz-filter: brightness(65%);
+
+            height: 50vh;
         }
 
         .img {

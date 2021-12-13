@@ -1,82 +1,120 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../../imgs/banner.png";
 import Quote from "../../imgs/DesignNCode.svg";
 import Data from "../../data/skills.json";
 import project from "../../data/projects.json";
+import { useEffect } from "react/cjs/react.development";
 
-export default class Function extends React.Component {
-  constructor() {
-    super();
-    this.state = { data: Data, projects: project };
-  }
+export default function Content() {
+    const [data, setData] = useState({});
+    const [about, setAbout] = useState("");
+    const [projects, setProjects] = useState([]);
+    const [collabs, setCollabs] = useState([]);
 
-  render() {
+    useEffect(() => {
+        async function getContent() {
+            fetch("http://localhost/content")
+                .then((resp) => resp.json())
+                .then((resp) => {
+                    setAbout(resp[0]);
+                    setData(createArrayOfSkills(resp[1]));
+                });
+        }
+
+        async function getProjects() {
+            fetch("http://localhost/projects")
+                .then((resp) => resp.json())
+                .then((resp) => {
+                    setProjects(
+                        resp.sort(function (a, b) {
+                            if (a.name < b.name) return -1;
+                            if (a.name > b.name) return 1;
+                            return 0;
+                        })
+                    );
+                });
+        }
+
+        async function getCollabs() {
+            fetch("http://localhost/collaborators")
+                .then((resp) => resp.json())
+                .then((resp) => {
+                    setCollabs(
+                        resp.sort(function (a, b) {
+                            if (a.name < b.name) return -1;
+                            if (a.name > b.name) return 1;
+                            return 0;
+                        })
+                    );
+                });
+        }
+
+        getContent();
+        getProjects();
+        getCollabs();
+    }, []);
+
+    const createArrayOfSkills = (data) => {
+        let array = [];
+        for (const skill in data) {
+            if (data[skill].name) {
+                array.push(data[skill]);
+            }
+        }
+        return array;
+    };
+
     return (
-      <div>
-        <div className="banner">
-          <img src={Banner} alt="me, myself and I"></img>
-        </div>
-        <div className="about_content">
-          <img src={Quote} alt="inspiring quote"></img>
-          <p>
-            Work Sans is a typeface family based loosely on early Grotesques,
-            such as those by Stephenson Blake, Miller & Richard and Bauerschen
-            Giesserei. The Regular weight and others in the middle of the family
-            are optimised for on-screen text usage at medium-sizes (14px-48px)
-            and can also be used in print design. The fonts closer to the
-            extreme weights are designed more for display use both on the web
-            and in print. Overall, features are simplified and optimised for
-            screen resolutions; for example, diacritic marks are larger than how
-            they would be in print. A version optimised for desktop applications
-            is available from the Work Sans github project page. Work Sans is a
-            typeface family based loosely on early Grotesques, such as those by
-            Stephenson Blake, Miller & Richard and Bauerschen Giesserei. The
-            Regular weight and others in the middle of the family are optimised
-            for on-screen text usage at medium-sizes (14px-48px) and can also be
-            used in print design. The fonts closer to the extreme weights are
-            designed more for display use both on the web and in print. Overall,
-            features are simplified and optimised for screen resolutions; for
-            example, diacritic marks are larger than how they would be in print.
-            A version optimised for desktop applications is available from the
-            Work Sans github project page.
-          </p>
-          <div className="skillz">
-            {this.state.data.skills.map((skill) => (
-              <div>
-                <h1>{skill.title}</h1>
-                <p>
-                  Work Sans is a typeface family based loosely on early
-                  Grotesques, such as those by Stephenson Blake, Miller &
-                  Richard and Bauerschen Giesserei. The Regular
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="collaborated">
-            <h1>Worked with</h1>
-            <p>Axel Viaene</p>
-            <p>Amelie Detrez</p>
-            <p>Mitch van Hove</p>
-            <p>Tom Wouters</p>
-            <p>Jochem Crab</p>
-          </div>
-          <div className="projects">
-            <h1>Projects</h1>
-            <div className="project">
-              <p id="labels">Name</p>
-              <p id="labels">Organization</p>
-              <p id="labels">Year</p>
+        <div>
+            <div className="banner">
+                <img src={Banner} alt="me, myself and I"></img>
             </div>
-            {this.state.projects.projects.map((project) => (
-              <div className="project">
-                <p>{project.name}</p>
-                <p>{project.client}</p>
-                <p>{project.year}</p>
-              </div>
-            ))}
-          </div>
+            <div className="about_content">
+                <img src={Quote} alt="inspiring quote"></img>
+                <p>{about.description}</p>
+                <div className="skillz">
+                    {data[0]
+                        ? data.map((skill) => (
+                              <div key={skill.name}>
+                                  <h1>{skill.name}</h1>
+                                  <p>{skill.text}</p>
+                              </div>
+                          ))
+                        : ""}
+                </div>
+                <div className="collaborated">
+                    <h1>Worked with</h1>
+                    {collabs.map((person) => (
+                        <p
+                            className="person"
+                            onClick={() => {
+                                window.open(person.url, "_blank");
+                            }}
+                        >
+                            {person.name}
+                        </p>
+                    ))}
+                </div>
+                {projects[0] ? (
+                    <div className="projects">
+                        <h1>Projects</h1>
+                        <div className="project">
+                            <p id="labels">Name</p>
+                            <p id="labels">Organization</p>
+                            <p id="labels">Year</p>
+                        </div>
+                        {projects.map((project) => (
+                            <div key={project.id} className="project">
+                                <p>{project.name}</p>
+                                <p>{project.client}</p>
+                                <p>{project.year}</p>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    ""
+                )}
+            </div>
         </div>
-      </div>
     );
-  }
 }

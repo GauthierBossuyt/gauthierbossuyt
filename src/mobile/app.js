@@ -9,16 +9,26 @@ SwiperCore.use([Pagination]);
 
 export default function App() {
     const [currentProject, setCurrentProject] = useState(Data.projects[0]);
+    const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
             fetch("http://localhost/projects")
                 .then((resp) => resp.json())
-                .then((resp) => console.log(resp));
+                .then((resp) => {
+                    let data = resp.sort(function (a, b) {
+                        if (a.name < b.name) return -1;
+                        if (a.name > b.name) return 1;
+                        return 0;
+                    });
+                    setProjects(data);
+                    setCurrentProject(data[0]);
+                });
         }
         fetchData();
+        console.log(projects);
     }, []);
-    
+
     let convertDataToString = (data) => {
         let string = "By";
         data.forEach((element, index) => {
@@ -47,11 +57,11 @@ export default function App() {
                     }}
                     className="mySwiper"
                     onSlideChange={(e) => {
-                        setCurrentProject(Data.projects[e.realIndex]);
+                        setCurrentProject(projects[e.realIndex]);
                     }}
                     loop
                 >
-                    {Data.projects.map((project, index) => (
+                    {projects.map((project, index) => (
                         <SwiperSlide key={index}>
                             <Slide id={index} project={project} />
                         </SwiperSlide>
@@ -59,10 +69,14 @@ export default function App() {
                 </Swiper>
                 <div className="info">
                     <h1>{currentProject.name}</h1>
-                    <p>{convertDataToString(currentProject.collaborators)}</p>
+                    <div className="collaborators">
+                        {currentProject.collaborators.map((person) => (
+                            <p>{person.name}</p>
+                        ))}
+                    </div>
                     <button
                         onClick={() => {
-                            window.open("https://google.com", "target_");
+                            window.open(currentProject.url, "target_");
                         }}
                     >
                         Go to project
