@@ -13,7 +13,6 @@ export default function Login(props) {
     if (e.target.id === "username") {
       setUsername({ value: e.target.value });
     } else if (e.target.id === "password") {
-      console.log(e.target.value);
       setPassword({ value: e.target.value });
     }
   };

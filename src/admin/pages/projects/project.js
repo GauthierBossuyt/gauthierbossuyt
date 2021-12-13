@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import Delete from "../../../imgs/delete.svg";
 import Edit from "../../../imgs/edit.svg";
 import Favourite from "../../../imgs/favourite.svg";
