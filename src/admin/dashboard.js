@@ -6,7 +6,6 @@ import Content from "./pages/content";
 
 export default function Dashboard(props) {
   const [Active, setActive] = useState("projects");
-  const [projects, setProjects] = useState({});
   const [content, setcontent] = useState({});
   const [collabs, setCollabs] = useState({});
 
@@ -28,7 +27,6 @@ export default function Dashboard(props) {
           return resp;
         });
 
-      setProjects(projects);
       setcontent(content);
       setCollabs(collaborators);
     }
