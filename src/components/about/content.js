@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Banner from "../../imgs/banner.png";
 import Quote from "../../imgs/DesignNCode.svg";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 
 export default function Content() {
   const [data, setData] = useState({});
