@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 export default function Login(props) {
-  const [username, setUsername] = useState({ value: "GauthierBossuyt" });
-  const [password, setPassword] = useState({ value: "W1bT1@mB1stT1@m" });
+  const [username, setUsername] = useState({ value: "" });
+  const [password, setPassword] = useState({ value: "" });
 
   const login = (e) => {
     e.preventDefault();
