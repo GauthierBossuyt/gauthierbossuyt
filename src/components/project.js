@@ -1,9 +1,5 @@
-import { useEffect } from "react/cjs/react.development";
-
 export default function Project(props) {
   let project = props.data;
-
-  useEffect(() => {}, [props.status]);
 
   return (
     <div className={props.status ? "project_bg" : "project_sm"}>
