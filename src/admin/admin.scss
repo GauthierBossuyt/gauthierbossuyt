@@ -1,208 +1,389 @@
 .admin_form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+#add_project {
+  background-color: #121212;
+  border: none;
+  border-radius: 50px;
+  color: $background-color;
+  font-size: 1.2vw;
+  margin-top: 50px;
+  padding: 10px 25px;
+  cursor: pointer;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 .admin_login {
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 50%;
-    border-radius: 10px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  border-radius: 10px;
 
-    h1 {
-        margin-bottom: 0px;
-    }
+  h1 {
+    margin-bottom: 0px;
+  }
 
-    #error {
-        color: red;
-        font-size: 12px;
-        margin-bottom: 20px;
-    }
-    input,
-    input[type="password"],
-    input[type="search"] {
-        margin-bottom: 15px;
-        border-radius: 6px;
-        border: none;
-        padding: 6px 10px;
-        box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.006),
-            6.7px 6.7px 5.3px rgba(0, 0, 0, 0.005),
-            12.5px 12.5px 10px rgba(0, 0, 0, 0.005),
-            22.3px 22.3px 17.9px rgba(0, 0, 0, 0.008),
-            41.8px 41.8px 33.4px rgba(0, 0, 0, 0.017),
-            100px 100px 80px rgba(0, 0, 0, 0.07);
-    }
+  #error {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+  input,
+  input[type="password"],
+  input[type="search"] {
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: none;
+    padding: 6px 10px;
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.006),
+      6.7px 6.7px 5.3px rgba(0, 0, 0, 0.005),
+      12.5px 12.5px 10px rgba(0, 0, 0, 0.005),
+      22.3px 22.3px 17.9px rgba(0, 0, 0, 0.008),
+      41.8px 41.8px 33.4px rgba(0, 0, 0, 0.017),
+      100px 100px 80px rgba(0, 0, 0, 0.07);
+  }
 
-    button {
-        margin-bottom: 25px;
-        background-color: $primary-color;
-        color: $background-color;
-        box-shadow: none;
-        border: none;
-        border-radius: 6px;
-        padding: 6px 35px;
-    }
+  button {
+    margin-bottom: 25px;
+    background-color: $primary-color;
+    color: $background-color;
+    box-shadow: none;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 35px;
+  }
 }
 
 .admin_dashboard {
-    width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  .dashboard {
+    grid-column: 2/13;
+    padding: 4vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .admin_nav {
+    grid-column: 1/2;
     height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: $primary-color;
 
-    .dashboard {
-        grid-column: 2/13;
-        padding: 4vh;
-        overflow-y: scroll;
-        overflow-x: hidden;
-
-        h1 {
-            margin: 0;
-        }
+    .nav-text {
+      display: flex;
+      justify-content: center;
+    }
+    h1 {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: white;
+      margin: 5vh 0;
+      font-size: 4vh;
+      display: inline-block;
     }
 
-    .admin_nav {
-        grid-column: 1/2;
-        height: 100vh;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        background-color: $primary-color;
-
-        .nav-text {
-            display: flex;
-            justify-content: center;
-        }
-        h1 {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            color: white;
-            margin: 5vh 0;
-            font-size: 4vh;
-            display: inline-block;
-        }
-
-        .nav-icons {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 4vh 0 0;
-            img {
-                max-width: 40px;
-                width: 60%;
-                margin-bottom: 5vh;
-                cursor: pointer;
-            }
-            .active {
-                filter: opacity(1);
-            }
-            .inactive {
-                filter: opacity(0.5);
-            }
-        }
+    .nav-icons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 4vh 20% 0;
+      img {
+        max-width: 55px;
+        width: 60%;
+        margin-bottom: 5vh;
+        cursor: pointer;
+      }
+      .active {
+        filter: opacity(1);
+      }
+      .inactive {
+        filter: opacity(0.5);
+      }
     }
+  }
+}
+
+.warning-delete-project {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #a1a1a162;
+  z-index: 15;
+
+  div {
+    background-color: white;
+    padding: 35px 35px 20px;
+    border-radius: 25px;
+  }
+
+  .button-warning-group {
+    display: flex;
+    justify-content: center;
+
+    button {
+      background-color: $primary-color;
+      padding: 10px 55px;
+      margin: 25px;
+      border: none;
+      border-radius: 12px;
+      color: $background-color;
+      margin-top: 50px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+}
+.admin-projects-form {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: $primary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .admin-form-div {
+    min-height: 55%;
+    width: 600px;
+    background-color: $background-color;
+    border-radius: 6px;
+    text-align: left;
+    padding: 25px 60px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  form h1 {
+    color: $primary-color !important;
+    font-size: 2.5vw;
+    margin-bottom: 50px !important;
+  }
+
+  form input,
+  form select {
+    width: 45%;
+    height: 40px;
+    padding-left: 15px;
+    border-radius: 6px;
+    border: none;
+    font-family: $text-font;
+    font-size: 16px;
+  }
+
+  form select {
+    margin-top: 20px;
+    background-color: white;
+    width: 30%;
+  }
+
+  #year {
+    width: 15%;
+    padding-left: 0px;
+    text-align: center;
+  }
+
+  #image {
+    width: 100%;
+  }
+
+  #collabs {
+    width: 60%;
+    background-color: white;
+    font-size: 16px;
+    overflow-y: hidden;
+    padding: 12px 15px;
+    border-radius: 6px;
+    white-space: nowrap;
+    overflow-x: auto;
+    text-overflow: clip;
+  }
+
+  #description {
+    width: 100%;
+    height: 20vh;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: $text-font;
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+  }
+
+  #url {
+    width: 75%;
+  }
+
+  .Inputs {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  form button {
+    background-color: $primary-color;
+    width: 30%;
+    border: none;
+    border-radius: 12px;
+    color: $background-color;
+    height: 30px;
+    margin-top: 50px;
+    cursor: pointer;
+  }
 }
 .admin-projects {
-    #title {
-        margin-bottom: 10vh;
+  padding-top: 20px;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  #title {
+    margin-bottom: 10vh;
+  }
+
+  #on {
+    height: 100%;
+  }
+
+  #off {
+    height: 40px;
+  }
+
+  .admin-project {
+    margin-bottom: 5vh;
+    position: relative;
+    overflow: hidden;
+    padding: 50px 40px;
+    border-radius: 6px;
+    width: 45%;
+    //background-color: #121212;
+
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.009),
+      6.7px 6.7px 5.3px rgba(0, 0, 0, 0.006),
+      12.5px 12.5px 10px rgba(0, 0, 0, 0.003),
+      22.3px 22.3px 17.9px rgba(0, 0, 0, 0.003),
+      41.8px 41.8px 33.4px rgba(0, 0, 0, 0.01),
+      100px 100px 80px rgba(0, 0, 0, 0.07);
+
+    img {
+      width: 100%;
     }
 
-    .admin-project {
-        margin-bottom: 5vh;
-        position: relative;
-        overflow: hidden;
-        padding: 50px 40px;
-        border-radius: 6px;
-        box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.009),
-            6.7px 6.7px 5.3px rgba(0, 0, 0, 0.006),
-            12.5px 12.5px 10px rgba(0, 0, 0, 0.003),
-            22.3px 22.3px 17.9px rgba(0, 0, 0, 0.003),
-            41.8px 41.8px 33.4px rgba(0, 0, 0, 0.01),
-            100px 100px 80px rgba(0, 0, 0, 0.07);
+    .admin-sm-project {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-        img {
-            width: 100%;
-        }
+      h1 {
+        display: inline-block;
+        color: $background-color;
+        cursor: pointer;
+        margin-left: 40px;
+      }
 
-        .admin-sm-project {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+      #edit,
+      #delete,
+      #favourite,
+      img {
+        width: 40px;
+        cursor: pointer;
+        margin-left: 20px;
+        opacity: 1;
+        filter: grayscale(1);
+      }
 
-            h1 {
-                display: inline-block;
-                color: $background-color;
-                cursor: pointer;
-                margin-left: 40px;
-            }
-
-            img {
-                width: 40px;
-                cursor: pointer;
-                margin-left: 20px;
-                opacity: 1;
-            }
-
-            img:hover {
-                fill: red;
-            }
-        }
-
-        .admin-bg-project {
-            padding-top: 45px;
-            h1,
-            h2,
-            p {
-                color: $background-color;
-            }
-
-            h2 {
-                font-size: 14px;
-            }
-
-            .extra-info-admin {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-
-            p {
-                font-size: 12px;
-                margin-top: 0;
-            }
-
-            .admin-project-collabs {
-                font-size: 16px;
-            }
-        }
-        #admin-project-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -5;
-            filter: brightness(20%);
-            -webkit-filter: brightness(20%);
-            -moz-filter: brightness(20%);
-        }
-
-        #arrow {
-            margin-left: 0;
-            position: absolute;
-            left: 20px;
-        }
-
-        .open {
-            animation: turnRight 0.5s ease-out forwards;
-        }
-
-        .close {
-            animation: turnLeft 0.5s ease-out forwards;
-        }
+      #edit:hover,
+      #delete:hover,
+      #favourite:hover {
+        filter: grayscale(0);
+      }
     }
+
+    .admin-bg-project {
+      padding-top: 45px;
+      h1,
+      h2,
+      p {
+        color: $background-color;
+      }
+
+      h2 {
+        font-size: 1.4vw;
+      }
+
+      .extra-info-admin {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      p {
+        font-size: 0.8vw;
+        margin-top: 0;
+      }
+
+      .admin-project-collabs {
+        font-size: 1.2vw;
+        margin-bottom: 15px;
+      }
+    }
+    #admin-project-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -5;
+      filter: brightness(20%);
+      -webkit-filter: brightness(20%);
+      -moz-filter: brightness(20%);
+    }
+
+    #arrow {
+      margin-left: 0;
+      position: absolute;
+      left: 20px;
+    }
+
+    .open {
+      animation: turnRight 0.5s ease-out forwards;
+    }
+
+    .close {
+      animation: turnLeft 0.5s ease-out forwards;
+    }
+  }
 }
