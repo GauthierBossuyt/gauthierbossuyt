@@ -92,8 +92,8 @@
 }
 
 .dark {
-  background-color: $primary-color;
+  animation: lightToDark 1.2s ease-out forwards;
 }
 .light {
-  background-color: #dddddd6b;
+  animation: darkToLight 1.2s ease-out forwards;
 }

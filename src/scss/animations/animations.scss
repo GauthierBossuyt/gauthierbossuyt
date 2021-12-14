@@ -1,44 +1,62 @@
 @keyframes loading {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 0%;
-    }
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0%;
+  }
 }
 
 @keyframes openNav {
-    0% {
-        height: 0vh;
-    }
-    100% {
-        height: 100vh;
-    }
+  0% {
+    height: 0vh;
+  }
+  100% {
+    height: 100vh;
+  }
 }
 
 @keyframes closeNav {
-    0% {
-        height: 100vh;
-    }
-    100% {
-        height: 0vh;
-    }
+  0% {
+    height: 100vh;
+  }
+  100% {
+    height: 0vh;
+  }
 }
 
 @keyframes turnLeft {
-    0% {
-        transform: rotateZ(0deg);
-    }
-    100% {
-        transform: rotateZ(-90deg);
-    }
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(-90deg);
+  }
 }
 
 @keyframes turnRight {
-    0% {
-        transform: rotateZ(-90deg);
-    }
-    100% {
-        transform: rotateZ(0deg);
-    }
+  0% {
+    transform: rotateZ(-90deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+@keyframes lightToDark {
+  0% {
+    height: #dddddd6b;
+  }
+  100% {
+    height: $primary-color;
+  }
+}
+
+@keyframes darkToLight {
+  0% {
+    height: $primary-color;
+  }
+  100% {
+    height: #dddddd6b;
+  }
 }
