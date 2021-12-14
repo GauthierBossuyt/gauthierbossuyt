@@ -14,7 +14,7 @@ export default function Nav(props) {
 
   return (
     <div className="nav">
-      <div className={isMenuOpen ? "menu light" : "menu dark"}>
+      <div className={isMenuOpen ? "menu dark" : "menu light"}>
         <Hamburger
           rounded
           hideOutline={true}
