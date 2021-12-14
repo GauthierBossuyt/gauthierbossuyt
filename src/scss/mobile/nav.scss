@@ -11,15 +11,16 @@
 
   .menu {
     position: fixed;
-    height: 100vh;
     top: 12px;
     right: 36px;
     z-index: 101;
+    background-color: #dddddd6b;
+    border-radius: 6px;
   }
 }
 
 .test {
-  position: absolute;
+  position: fixed;
   top: 0;
   background-color: $primary-color;
   width: 100vw;
